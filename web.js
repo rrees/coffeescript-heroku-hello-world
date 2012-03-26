@@ -7,6 +7,6 @@
     });
   });
 
-  hello.app.listen(process.env.PORT || 3000);
+  hello.app.listen(Number(process.env.PORT || 3000));
 
 }).call(this);
