@@ -1,12 +1,12 @@
 (function() {
-  var hello;
+  var hello, port;
 
-  hello = require('zappa')(function() {
+  port = Number(process.env.PORT || 3000);
+
+  hello = require('zappa')(port, function() {
     return this.get({
       '/': 'Hello world'
     });
   });
-
-  hello.app.listen(Number(process.env.PORT || 3000));
 
 }).call(this);
