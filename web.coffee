@@ -1,7 +1,7 @@
 
 port = Number(process.env.PORT or 3000)
 
-hello = require('zappa') port, ->
+hello = require('zappajs') port, ->
 	@get '/':  ->
 		@render index : {'name' : 'world'}
 	

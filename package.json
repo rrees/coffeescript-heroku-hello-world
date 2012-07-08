@@ -3,6 +3,6 @@
 	"name" : "rrees-hello-node",
 	"version" : "0.0.1",
 	"dependencies" : {
-		"zappa" : "0.3.3"
+		"zappajs" : "0.3.7"
 	}
 }
