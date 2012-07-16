@@ -2,14 +2,27 @@
 port = Number(process.env.PORT or 3000)
 
 hello = require('zappajs') port, ->
-	@get '/':  ->
-		@render index : {'name' : 'world'}
+	@get '/':  -> @redirect '/hello/world'
+
+	@get '/hello': -> @render question : {}
+
+	@get '/hello/:name': -> @render greeting : {"name" : @params.name}
 	
-	@view index: ->
-		@title = 'Greetz'
-		
-		h1 "Demo site"
-		p "Hello " + @name
+	@view greeting: ->
+		@title = 'Greetings to the people'
+
+		h1 "Greeting"
+
+		p "Hello #{@name}"
+
+	@view question: ->
+		@title = 'Who are you?'
+
+		h1 "Who are you?"
+
+		form method: "POST", action: '/hello', ->
+			input type: "text"
+			button type: "submit", -> "Greet"
 
 	@view layout: ->
 		doctype 5

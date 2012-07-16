@@ -7,18 +7,49 @@
   hello = require('zappajs')(port, function() {
     this.get({
       '/': function() {
+        return this.redirect('/hello/world');
+      }
+    });
+    this.get({
+      '/hello': function() {
         return this.render({
-          index: {
-            'name': 'world'
+          question: {}
+        });
+      }
+    });
+    this.get({
+      '/hello/:name': function() {
+        return this.render({
+          greeting: {
+            "name": this.params.name
           }
         });
       }
     });
     this.view({
-      index: function() {
-        this.title = 'Greetz';
-        h1("Demo site");
+      greeting: function() {
+        this.title = 'Greetings to the people';
+        h1("Greeting");
         return p("Hello " + this.name);
+      }
+    });
+    this.view({
+      question: function() {
+        this.title = 'Who are you?';
+        h1("Who are you?");
+        return form({
+          method: "POST",
+          action: '/hello'
+        }, function() {
+          input({
+            type: "text"
+          });
+          return button({
+            type: "submit"
+          }, function() {
+            return "Greet";
+          });
+        });
       }
     });
     this.view({
